@@ -38,8 +38,8 @@ def carrega_arquivotxt(num_max_tokens=1000):
         print(f"Erro no carregamento de arquivo: {e}")
 
 @retry(stop=stop_after_attempt(4))
-def get_resume(text, *kwargs, p):
-    prompt = f"{p}\n{text}"
+def get_resume(text, *kwargs):
+    prompt = f"{prompt_text}\n{text}"
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     max_tokens=350,
@@ -56,7 +56,7 @@ def salva_arquivo_txt(r):
         for linha in range(len(r)-1):
             arquivo_respostas.write(r[linha])
 
-def resume_texto(texto, prompt):
+def resume_texto(texto):
     tamanho_do_bloco = 1000
     minha_string_grande = texto[0]
     paginas = [minha_string_grande[i:i+tamanho_do_bloco] for i in range(0, len(minha_string_grande), tamanho_do_bloco)]
@@ -65,7 +65,7 @@ def resume_texto(texto, prompt):
     pagina = 1
     for linha in texto:
         print('Resumindo página: ', pagina)
-        r.append(get_resume(linha, prompt))
+        r.append(get_resume(linha))
         #r.append(linha)
         p = p + 1
     return r
@@ -81,11 +81,11 @@ arquivo_txt = "kanban.txt"
 
 texto_extraido = carrega_arquivotxt()
 
-prompt = """
+prompt_text = """
     Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
     Remova todas as obviedades e todas repetições. Crie um texto conciso.
     Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
 
-texto_resumido = resume_texto(texto_extraido, prompt)
+texto_resumido = resume_texto(texto_extraido)
 
 salva_arquivo_txt(texto_resumido)
