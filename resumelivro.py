@@ -84,10 +84,9 @@ def resume_texto(texto):
     r = []
     pagina = 1
     for linha in texto:
-        #resumo = get_resume(linha)        
-        resumo = linha
+        resumo = get_resume(linha)        
+        #resumo = linha
         r.append(resumo)
-        #r.append(linha)
         print(f"Resumindo página: {pagina}. Tamanho anterior: {conta_tokens(linha)}. Tamanho novo: {conta_tokens(resumo)}")
         pagina = pagina + 1
     return r
