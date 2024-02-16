@@ -56,16 +56,16 @@ def salva_arquivo_txt(r):
         for linha in range(len(r)-1):
             arquivo_respostas.write(r[linha])
 
-def resume_texto(texto):
+def resume_texto(texto, prompt):
     tamanho_do_bloco = 1000
     minha_string_grande = texto[0]
     paginas = [minha_string_grande[i:i+tamanho_do_bloco] for i in range(0, len(minha_string_grande), tamanho_do_bloco)]
     print(f"resumindo {len(paginas)} páginas...")
     r = []
-    p = 1
+    pagina = 1
     for linha in texto:
-        print('Resumindo página: ', p)
-        r.append(get_resume(linha))
+        print('Resumindo página: ', pagina)
+        r.append(get_resume(linha, prompt))
         #r.append(linha)
         p = p + 1
     return r
@@ -80,11 +80,12 @@ dir_txt_resumido = "resumidos/"
 arquivo_txt = "kanban.txt"
 
 texto_extraido = carrega_arquivotxt()
-promtp = """
-    Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
-    Remova obviedades e quaisquer repetições.
-    Pense estar resumindo para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
 
-texto_resumido = resume_texto(texto_extraido)
+prompt = """
+    Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
+    Remova todas as obviedades e todas repetições. Crie um texto conciso.
+    Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
+
+texto_resumido = resume_texto(texto_extraido, prompt)
 
 salva_arquivo_txt(texto_resumido)
