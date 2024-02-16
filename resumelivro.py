@@ -1,3 +1,4 @@
+import time
 import os
 import nltk
 import pandas as pd
@@ -61,7 +62,7 @@ def carrega_arquivotxt(caminho):
 @retry(stop=stop_after_attempt(4))
 def get_resume(text, *kwargs):
     completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo-0125",
+    model="gpt-4",
     max_tokens=max_tokens_resumo,
     temperature=0.1,
     #frequency_penalty=1.5,
@@ -102,14 +103,15 @@ def carrega_diretorio(diretorio):
             palavras_antes += conta_tokens(texto)
 
         print (f"Texto extraído com {len(texto_extraido)} grandes tópicos.")
-
+        print (f"Aguardando 60 segundos...")
+        time.sleep(60)
         texto_resumido = resume_texto(texto_extraido)
         palavras_depois = 0
         for texto in texto_resumido:
             palavras_depois += conta_tokens(texto)
-
         print(f"O texto anterior possuía {palavras_antes} e agora possui {palavras_depois} em uma razão de {(palavras_depois/palavras_antes)*100}%")
         salva_arquivo_txt(texto_resumido, nome_arquivo)
+        
           
 nltk.download('stopwords', download_dir=r'dados\nltk_data')
 nltk.data.path.append(r".\dados\nltk_data")
@@ -126,7 +128,7 @@ prompt_text = """
     #Remova todas as obviedades e todas repetições. Crie um texto conciso.
     #Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
 
-max_gpt_tokens = 2100
+max_gpt_tokens = 7000
 taxa_de_compressao_minima = 3
 max_tokens_resumo = int(max_gpt_tokens / taxa_de_compressao_minima)
 num_max_tokens= max_gpt_tokens - conta_tokens(prompt_text)
