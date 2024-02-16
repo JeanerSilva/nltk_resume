@@ -26,16 +26,35 @@ def process_string(string):
     string = [word for word in string.split() if len(word) > 3]     #Remove palavras com menos de 3 caracteres
     return string
 
-def carrega_arquivotxt(num_max_tokens=1000):
+def subdividir_string_em_palavras(texto, limite_por_lista):
+    palavras = texto.split()
+    lista_de_sublistas = []
+    for i in range(0, len(palavras), limite_por_lista):
+        lista_de_sublistas.append(" ".join(palavras[i:i+limite_por_lista]))
+    return lista_de_sublistas
+
+def conta_tokens(texto):
+    padrao = r'\b\w+(-\w+)*\b'
+    return re.findall(padrao, texto)
+
+def carrega_arquivotxt():
     print(f"Carregendo {dir_txt}{arquivo_txt}...")
     try:
         with open(dir_txt + arquivo_txt, "r") as arquivo:
             texto_extraido = arquivo.read()
             textos = texto_extraido.split("Item do edital")
-            return textos
+            retorno = []
             
-            #tokens = [' '.join(texto_extraido[i:i+num_max_tokens]) for i in range(0, len(texto_extraido), num_max_tokens-10)]
-            
+            for texto in textos:
+                if texto:
+                    quantidade_de_palavras = conta_tokens(texto)
+                    if quantidade_de_palavras < num_max_tokens:
+                        retorno.append(texto)                        
+                    else:                        
+                        blocos = subdividir_string_em_palavras(texto, num_max_tokens)
+                        for bloco in blocos:
+                            retorno.append(bloco)
+            return retorno
     except IOError as e:
         print(f"Erro no carregamento de arquivo: {e}")
 
@@ -43,7 +62,7 @@ def carrega_arquivotxt(num_max_tokens=1000):
 def get_resume(text, *kwargs):
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
-    max_tokens=50,
+    max_tokens=350,
     temperature=0.1,
     frequency_penalty=1.5,
     messages=[
@@ -63,7 +82,7 @@ def resume_texto(texto):
     pagina = 1
     for linha in texto:
         padrao = r'\b\w+(-\w+)*\b'
-        print(f"Resumindo página: {pagina}. Tamanho: {len(re.findall(padrao, linha))}")
+        print(f"Resumindo página: {pagina}. Tamanho: {conta_tokens(linha)}")
         r.append(get_resume(linha))
         #r.append(linha)
         pagina = pagina + 1
@@ -78,14 +97,18 @@ dir_txt = "txts/"
 dir_txt_resumido = "resumidos/"
 arquivo_txt = "kanban.txt"
 
-texto_extraido = carrega_arquivotxt()
-
-print (f"texto extraído: {len(texto_extraido)}")
-
 prompt_text = """
     Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
     Remova todas as obviedades e todas repetições. Crie um texto conciso.
     Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
+
+max_gpt_tokens = 4096
+num_max_tokens= max_gpt_tokens - conta_tokens(prompt_text)
+
+texto_extraido = carrega_arquivotxt()
+
+print (f"Texto extraído com {len(texto_extraido)} grandes tópicos.")
+
 
 texto_resumido = resume_texto(texto_extraido)
 
