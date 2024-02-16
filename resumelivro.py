@@ -27,6 +27,7 @@ def process_string(string):
     return string
 
 def carrega_arquivotxt(num_max_tokens=1000):
+    print(f"Carregendo {dir_txt}{arquivo_txt}...")
     try:
         with open(dir_txt + arquivo_txt, "r") as arquivo:
             texto_extraido = arquivo.read()
@@ -38,7 +39,7 @@ def carrega_arquivotxt(num_max_tokens=1000):
 
 @retry(stop=stop_after_attempt(4))
 def get_resume(text, *kwargs):
-   
+    print(f"resumindo... ")
     prompt = f"Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento: \n{text}"
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
@@ -51,15 +52,20 @@ def get_resume(text, *kwargs):
     return completion.choices[0].message['content']
 
 def salva_arquivo_txt(r):
+    print(f"Sanvando {dir_txt_resumido}{arquivo_txt}...")
     with open(dir_txt_resumido + arquivo_txt, 'a', encoding='utf-8') as arquivo_respostas:
         for linha in range(len(r)-1):
             arquivo_respostas.write(r[linha])
 
 def resume_texto(texto):
+    tamanho_do_bloco = 1000
+    minha_string_grande = texto[0]
+    paginas = [minha_string_grande[i:i+tamanho_do_bloco] for i in range(0, len(minha_string_grande), tamanho_do_bloco)]
+    print(f"resumindo {len(paginas)} páginas...")
     r = []
     for linha in texto:
-        #r.append(get_resume(token))
-        r.append(linha)
+        r.append(get_resume(linha))
+        #r.append(linha)
     return r
 
           
