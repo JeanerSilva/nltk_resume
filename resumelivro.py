@@ -42,8 +42,7 @@ def carrega_arquivotxt(caminho):
         with open(caminho, "r") as arquivo:
             texto_extraido = arquivo.read()
             textos = texto_extraido.split("Item do edital")
-            retorno = []
-            
+            retorno = []            
             for texto in textos:
                 if texto:
                     quantidade_de_palavras = conta_tokens(texto)
@@ -85,10 +84,10 @@ def resume_texto(texto):
     pagina = 1
     for linha in texto:
         #time.sleep(60)
+        #resumo = linha
         resumo = get_resume(linha)        
-        resumo = linha
         r.append(resumo)
-        print(f"Resumindo página: {pagina}. Tamanho anterior: {conta_tokens(linha)}. Tamanho novo: {conta_tokens(resumo)}")
+        print(f"Resumindo página {pagina}/{len(texto)}. Tamanho anterior: {conta_tokens(linha)}. Tamanho resumido: {conta_tokens(resumo)}")
         pagina = pagina + 1
         print(f"Aguardando 60 segundos...")
 
@@ -123,21 +122,23 @@ dir_txt = "txts/"
 dir_txt_resumido = "resumidos/"
 arquivo_txt = "kanban.txt"
 
-prompt_text = """    
-    Refaça o texto com foco em retirar informações básicas ou repetidas e em reforçar itens, tópicos, subtópicos e exemplos.
-    O texto precisa ser conciso, mas sem perda de informação. 
-    """
+#prompt_text = """    
+#    Refaça o texto abaixo mantendo a estutua de itens, tópicos, subtópicos e exemplos, mas deixe o conteúdo mais conciso.
+#    """
     #Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
     #Remova todas as obviedades e todas repetições. Crie um texto conciso.
     #Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
 
+prompt_text = """Deixe o texto abaixo mais conciso. Na parte geral faça um resumo., mantendo a essência e as informações principais, 
+mantenha a estrutura tópicos, subtópicos e semelhantes mas os deixe mais diretos e sucintos, sem perder nenhum ponto importante"""
+
 max_gpt_tokens = 1500
-taxa_de_compressao_minima = 3
+taxa_de_compressao_minima = 1.5
 max_tokens_resumo = int(max_gpt_tokens / taxa_de_compressao_minima)
 num_max_tokens= max_gpt_tokens - conta_tokens(prompt_text)
 print(f"Taxa de compressão: {taxa_de_compressao_minima}")
 print(f"Máximo de texto por bloco: {max_tokens_resumo}")
 #resume_diretorio(dir_txt)
-resume_arquivo (dir_txt, "administrativo.txt")
+resume_arquivo (dir_txt, "economia.txt")
 
 

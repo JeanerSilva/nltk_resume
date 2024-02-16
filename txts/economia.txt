@@ -1,10 +1,7 @@
 Item do edital: 14. Macroeconomia:  
  
-1. - Tópico: Conceitos básicos de macroeconomia
-  - Subtópico: Produto Interno Bruto (PIB)
-  - Subtópico: Inflação
-  - Subtópico: Taxa de desemprego
-  - Subtópico: Consumo e poupança
+1. Conceitos básicos de macroeconomia
+
 A macroeconomia é um ramo da economia que estuda o comportamento econômico agregado de uma nação ou região. Ela se concentra em analisar variáveis como o produto interno bruto (PIB), a taxa de desemprego, a inflação, os níveis de investimento e consumo, entre outros. O objetivo principal da macroeconomia é entender como essas variáveis interagem e afetam o crescimento econômico e o bem-estar social.
 
 Existem diferentes tipos de análise macroeconômica que podem ser utilizados para compreender melhor a dinâmica econômica. Alguns dos principais são:
@@ -32,11 +29,8 @@ Além dessas abordagens teóricas, existem também diferentes subcampos dentro d
 É importante ressaltar que essas abordagens e subcampos não são mutuamente exclusivos. Muitas vezes, os economistas combinam diferentes teorias e métodos para obter uma compreensão mais completa do comportamento macroeconômico.
 
 Em resumo, a macroeconomia é um campo amplo que busca entender como as variáveis econômicas agregadas interagem para influenciar o crescimento econômico e o bem-estar social. Diferentes teorias e subcampos fornecem perspectivas complementares para analisar a dinâmica macroeconômica em detalhes.
-2. - Tópico: Políticas macroeconômicas
-  - Subtópico: Política fiscal
-  - Subtópico: Política monetária
-  - Subtópico: Política cambial
-  - Subtópico: Política de renda
+
+2. - Políticas macroeconômicas
 A macroeconomia é um ramo da economia que estuda o comportamento e o desempenho da economia como um todo. Ela se concentra em analisar variáveis econômicas agregadas, como a produção total de bens e serviços (produto interno bruto - PIB), o nível geral de preços, a taxa de desemprego, entre outros.
 
 Existem diferentes tipos de análise macroeconômica que podem ser realizados para entender melhor a dinâmica da economia. Alguns dos principais são:
@@ -63,10 +57,8 @@ Além desses tipos principais, existem também subtipos dentro da macroeconomia 
 Em relação às tendências macroeconômicas, é importante mencionar que elas podem variar ao longo do tempo e entre diferentes países. Por exemplo, a tendência de crescimento econômico pode ser mais acelerada em economias emergentes do que em economias desenvolvidas. Da mesma forma, as políticas monetárias e fiscais adotadas pelos governos podem variar dependendo das condições econômicas e dos objetivos de cada país.
 
 Em resumo, a macroeconomia é um campo amplo que abrange diferentes áreas de estudo para entender o funcionamento da economia como um todo. Ela analisa fatores como crescimento econômico, ciclos econômicos, política monetária, política fiscal e comércio internacional. Cada uma dessas áreas possui teorias específicas e exemplos práticos que ajudam a compreender melhor os fenômenos macroeconômicos.
-3. - Tópico: Mercado de trabalho e desigualdade
-  - Subtópico: Mercado de trabalho e oferta de emprego
-  - Subtópico: Desigualdade de renda e distribuição de recursos
-  - Subtópico: Políticas de combate à desigualdade
+3. Mercado de trabalho e desigualdade
+
 A macroeconomia é um ramo da economia que estuda o comportamento econômico agregado de uma nação ou região. Ela se concentra em analisar variáveis como o produto interno bruto (PIB), a taxa de desemprego, a inflação, os níveis de investimento e consumo, entre outros. O objetivo principal da macroeconomia é entender como essas variáveis interagem e afetam o crescimento econômico e o bem-estar da sociedade.
 
 Existem diferentes tipos de análise macroeconômica que podem ser utilizados para compreender melhor a economia em geral. Alguns dos principais são:
@@ -90,10 +82,8 @@ Além dessas abordagens teóricas, existem também diferentes subcampos dentro d
 4. Política monetária: A política monetária envolve as ações do banco central para controlar a oferta de moeda e as taxas de juros com o objetivo de influenciar a atividade econômica. Isso inclui medidas como ajustes nas taxas de juros, operações no mercado aberto e controle das reservas bancárias.
 
 Esses são apenas alguns exemplos dos diferentes tipos e subcampos da macroeconomia. Cada um desses aspectos é estudado em detalhes pelos economistas para entender melhor como a economia funciona em nível agregado e como as políticas podem ser implementadas para promover o crescimento econômico sustentável e o bem-estar da sociedade.
-4. - Tópico: Crescimento econômico
-  - Subtópico: Investimento e acumulação de capital
-  - Subtópico: Tecnologia e inovação
-  - Subtópico: Desenvolvimento sustentável
+
+4. Crescimento econômico
 A macroeconomia é um ramo da economia que estuda o comportamento e as tendências da economia como um todo. Ela se concentra em analisar variáveis econômicas agregadas, como o produto interno bruto (PIB), a taxa de desemprego, a inflação, entre outras.
 
 Existem diferentes tipos de análises macroeconômicas que podem ser realizadas para compreender melhor a dinâmica da economia. Alguns dos principais tipos incluem:
@@ -119,10 +109,8 @@ Além desses tipos de análises macroeconômicas, existem também diferentes sub
 É importante ressaltar que essas classificações não são excludentes entre si; muitas vezes elas se complementam na análise macroeconômica.
 
 Em resumo, a macroeconomia é um campo amplo e complexo que busca entender o funcionamento da economia como um todo. Ela utiliza diferentes tipos de análises e classificações para investigar as tendências econômicas, os determinantes do crescimento, os ciclos econômicos, as políticas governamentais e o comércio internacional. O estudo desses aspectos é fundamental para a formulação de políticas econômicas eficazes e para uma compreensão mais profunda dos fenômenos macroeconômicos.
-5. - Tópico: Setor externo e comércio internacional
-  - Subtópico: Balança comercial
-  - Subtópico: Taxa de câmbio
-  - Subtópico: Acordos comerciais e blocos econômicos
+
+5. Setor externo e comércio internacional
 A macroeconomia é um ramo da economia que estuda o comportamento e o desempenho da economia como um todo. Ela se concentra em analisar variáveis econômicas agregadas, como produto interno bruto (PIB), taxa de desemprego, inflação, investimento, consumo e balança comercial.
 
 Existem diferentes tipos de macroeconomia que abordam diferentes aspectos do funcionamento da economia. Alguns dos principais tipos incluem:
@@ -132,10 +120,7 @@ Existem diferentes tipos de macroeconomia que abordam diferentes aspectos do fun
 2. Macroeconomia keynesiana: A macroeconomia keynesiana foi desenvolvida por John Maynard Keynes durante a Grande Depressão nos anos 1930. Essa abordagem destaca o papel do governo na estabilização da economia por meio de políticas fiscais (gastos públicos) e monetárias (controle da oferta monetária). Os keynesianos argumentam que os mercados podem falhar em alcançar pleno emprego no curto prazo.
 
 3. Macroeconomia neoclássica: A macroeconomi
-6. - Tópico: Políticas de estabilização econômica
-  - Subtópico: Controle da inflação
-  - Subtópico: Estabilização do mercado financeiro
-  - Subtópico: Políticas anticíclicas
+6. Políticas de estabilização econômica
 A macroeconomia é um ramo da economia que estuda o comportamento econômico agregado de uma nação ou região. Ela se concentra em analisar variáveis como o produto interno bruto (PIB), a taxa de desemprego, a inflação, os níveis de investimento e consumo, entre outros. O objetivo principal da macroeconomia é entender e explicar os principais determinantes do crescimento econômico e das flutuações no nível geral de atividade econômica.
 
 Existem diferentes tipos de análises macroeconômicas que podem ser realizadas para compreender melhor a economia em questão. Alguns dos principais tipos incluem:
@@ -161,10 +146,7 @@ Além dessas classificações gerais, existem também subcampos dentro da macroe
 É importante ressaltar que esses são apenas alguns exemplos dos muitos tópicos abordados pela macroeconomia. Cada um desses temas possui suas próprias teorias, modelos e métodos de análise específicos que são estudados pelos pesquisadores nessa área.
 
 Em resumo, a macroeconomia é um campo amplo que busca entender o comportamento agregado da economia em termos de variáveis como PIB, inflação, desemprego etc., utilizando diferentes tipos de análises, como descritiva, teórica e aplicada. Além disso, existem subcampos que se concentram em aspectos específicos da economia agregada, como crescimento econômico, ciclos econômicos, política monetária e fiscal, e economia internacional.
-7. - Tópico: Economia global e relações internacionais
-  - Subtópico: Organizações internacionais
-  - Subtópico: Fluxos de capital e investimentos estrangeiros
-  - Subtópico: Crises econômicas globais
+7. Economia global e relações internacionais
 A macroeconomia é um ramo da economia que estuda o comportamento e o desempenho da economia como um todo. Ela se concentra em analisar variáveis econômicas agregadas, como produto interno bruto (PIB), inflação, desemprego, consumo e investimento.
 
 Existem diferentes tipos de macroeconomia que abordam diferentes aspectos do funcionamento da economia. Alguns dos principais tipos incluem:
@@ -1071,7 +1053,7 @@ Além disso, existem alguns conceitos relacionados às curvas de indiferença:
 
 3. Preferências transitivas: As curvas de indiferença assumem que as preferências dos consumidores são transitivas, ou seja, se o consumidor prefere uma combinação A em relação à B e prefere B em relação à C, então ele também prefere A em relação à C.
 
-4. Curvas convexas versus não-convexas: Em algumas situações específicas, as curvas de indiferença podem ser não-convexas quando há preferência por variedade ou aversão ao risco.
+4. Curvas convexas versus não-convexas: Em algumas situa  ões específicas, as curvas de indiferença podem ser não-convexas quando há preferência por variedade ou aversão ao risco.
 
 Para ilustrar esses conceitos na prática, vamos considerar um exemplo hipotético: imagine que estamos analisando as preferências alimentares de uma pessoa entre maçãs (bem 1) e bananas (bem 2). Se traçarmos as curvas de indiferença dessa pessoa, podemos observar que ela está disposta a abrir mão de algumas maçãs para obter mais bananas, desde que sua satisfação seja mantida constante. Além disso, se aumentarmos a quantidade de bananas disponíveis, essa pessoa estará disposta a abrir mão de menos maçãs para obter mais bananas.
 
@@ -1438,7 +1420,7 @@ Se o valor resultante for maior do que 1, diz-se que a demanda é elástica, ind
 
 Por outro lado, se o valor for menor do que 1 (mas ainda positivo), diz-se que a demanda é inelástica. Nesse caso, os consumidores não são tão sensíveis às mudanças de preços e continuam comprando mesmo com aumentos nos preços. Por exemplo, se o preço dos medicamentos aumentar em 10% e as pessoas reduzirem seu consumo em apenas 5%, teríamos uma elasticidade-preço igual a -0,5 (-5%/10% = -0,5).
 
-Além disso, se o valor for igual a 1, diz-se que a demanda é unitária. Nesse caso, uma variação percentual no preço resultará em uma variação percentual equivalente na quantidade procurada.
+Além disso, se o valor for igual a 1, diz-se que a demanda é unitária. Nesse caso, uma variação percentual no preço resultar   em uma variação percentual equivalente na quantidade procurada.
 
 A elasticidade-renda da demanda mede o impacto que uma mudança na renda dos consumidores tem sobre a quantidade procurada de um bem ou serviço. Ela é calculada pela fórmula:
 
