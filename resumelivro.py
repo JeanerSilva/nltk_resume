@@ -35,7 +35,7 @@ def subdividir_string_em_palavras(texto, limite_por_lista):
 
 def conta_tokens(texto):
     padrao = r'\b\w+(-\w+)*\b'
-    return re.findall(padrao, texto)
+    return len(re.findall(padrao, texto))
 
 def carrega_arquivotxt():
     print(f"Carregendo {dir_txt}{arquivo_txt}...")
@@ -108,7 +108,6 @@ num_max_tokens= max_gpt_tokens - conta_tokens(prompt_text)
 texto_extraido = carrega_arquivotxt()
 
 print (f"Texto extraído com {len(texto_extraido)} grandes tópicos.")
-
 
 texto_resumido = resume_texto(texto_extraido)
 
