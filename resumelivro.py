@@ -31,9 +31,11 @@ def carrega_arquivotxt(num_max_tokens=1000):
     try:
         with open(dir_txt + arquivo_txt, "r") as arquivo:
             texto_extraido = arquivo.read()
-            texto_extraido = process_string(texto_extraido)
-            tokens = [' '.join(texto_extraido[i:i+num_max_tokens]) for i in range(0, len(texto_extraido), num_max_tokens-10)]
-            return tokens
+            textos = texto_extraido.split("Item do edital")
+            return textos
+            
+            #tokens = [' '.join(texto_extraido[i:i+num_max_tokens]) for i in range(0, len(texto_extraido), num_max_tokens-10)]
+            
     except IOError as e:
         print(f"Erro no carregamento de arquivo: {e}")
 
@@ -57,17 +59,14 @@ def salva_arquivo_txt(r):
             arquivo_respostas.write(r[linha])
 
 def resume_texto(texto):
-    tamanho_do_bloco = 1000
-    minha_string_grande = texto[0]
-    paginas = [minha_string_grande[i:i+tamanho_do_bloco] for i in range(0, len(minha_string_grande), tamanho_do_bloco)]
-    print(f"resumindo {len(paginas)} páginas...")
     r = []
     pagina = 1
     for linha in texto:
-        print('Resumindo página: ', pagina)
+        padrao = r'\b\w+(-\w+)*\b'
+        print(f"Resumindo página: {pagina}. Tamanho: {len(re.findall(padrao, linha))}")
         r.append(get_resume(linha))
         #r.append(linha)
-        p = p + 1
+        pagina = pagina + 1
     return r
 
           
@@ -80,6 +79,8 @@ dir_txt_resumido = "resumidos/"
 arquivo_txt = "kanban.txt"
 
 texto_extraido = carrega_arquivotxt()
+
+print (f"texto extraído: {len(texto_extraido)}")
 
 prompt_text = """
     Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
