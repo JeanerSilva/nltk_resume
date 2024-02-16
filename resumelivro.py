@@ -1,13 +1,11 @@
 import time
 import os
 import nltk
-import pandas as pd
 import re
 import nltk
 from nltk.corpus import stopwords 
-from nltk.stem import PorterStemmer, SnowballStemmer
+from nltk.stem import PorterStemmer
 from langdetect import detect
-import iso639
 import unicodedata
 from tenacity import retry, stop_after_attempt
 import openai
