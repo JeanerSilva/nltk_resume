@@ -61,10 +61,10 @@ def carrega_arquivotxt():
 @retry(stop=stop_after_attempt(4))
 def get_resume(text, *kwargs):
     completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    max_tokens=350,
+    model="gpt-3.5-turbo-0125",
+    max_tokens=max_tokens_resumo,
     temperature=0.1,
-    frequency_penalty=1.5,
+    #frequency_penalty=1.5,
     messages=[
         {"role": "user", "content": f"{prompt_text}\n{text}"}
     ]
@@ -73,7 +73,7 @@ def get_resume(text, *kwargs):
 
 def salva_arquivo_txt(r):
     print(f"Salvando {dir_txt_resumido}{arquivo_txt}...")
-    with open(dir_txt_resumido + "resumido_" + arquivo_txt, 'a', encoding='utf-8') as arquivo_respostas:
+    with open(dir_txt_resumido + "resumido_" + arquivo_txt, 'w', encoding='utf-8') as arquivo_respostas:
         for linha in range(len(r)-1):
             arquivo_respostas.write(r[linha])
 
@@ -81,10 +81,10 @@ def resume_texto(texto):
     r = []
     pagina = 1
     for linha in texto:
-        padrao = r'\b\w+(-\w+)*\b'
-        print(f"Resumindo página: {pagina}. Tamanho: {conta_tokens(linha)}")
-        r.append(get_resume(linha))
+        resumo = get_resume(linha)        
+        r.append(resumo)
         #r.append(linha)
+        print(f"Resumindo página: {pagina}. Tamanho anterior: {conta_tokens(linha)}. Tamanho novo: {conta_tokens(resumo)}")
         pagina = pagina + 1
     return r
 
@@ -102,13 +102,25 @@ prompt_text = """
     Remova todas as obviedades e todas repetições. Crie um texto conciso.
     Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
 
-max_gpt_tokens = 4096
+max_gpt_tokens = 2100
+taxa_de_compressao = 4
+max_tokens_resumo = int(max_gpt_tokens / taxa_de_compressao)
 num_max_tokens= max_gpt_tokens - conta_tokens(prompt_text)
 
+print(f"Taxa de compressão: {taxa_de_compressao}")
+print(f"Máximo de texto por bloco: {max_tokens_resumo}")
+
 texto_extraido = carrega_arquivotxt()
+palavras_antes = 0
+for texto in texto_extraido:
+    palavras_antes += conta_tokens(texto)
 
 print (f"Texto extraído com {len(texto_extraido)} grandes tópicos.")
 
 texto_resumido = resume_texto(texto_extraido)
+palavras_depois = 0
+for texto in texto_resumido:
+    palavras_depois += conta_tokens(texto)
 
+print(f"O texto anterior possuía {palavras_antes} e agora possui {palavras_depois} em uma razão de {palavras_depois/palavras_antes}")
 salva_arquivo_txt(texto_resumido)
