@@ -41,13 +41,13 @@ def carrega_arquivotxt(num_max_tokens=1000):
 
 @retry(stop=stop_after_attempt(4))
 def get_resume(text, *kwargs):
-    prompt = f"{prompt_text}\n{text}"
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
-    max_tokens=350,
-    temperature=0.5,
+    max_tokens=50,
+    temperature=0.1,
+    frequency_penalty=1.5,
     messages=[
-        {"role": "user", "content": prompt}
+        {"role": "user", "content": f"{prompt_text}\n{text}"}
     ]
     )
     return completion.choices[0].message['content']
