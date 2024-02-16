@@ -37,10 +37,10 @@ def conta_tokens(texto):
     padrao = r'\b\w+(-\w+)*\b'
     return len(re.findall(padrao, texto))
 
-def carrega_arquivotxt():
-    print(f"Carregendo {dir_txt}{arquivo_txt}...")
+def carrega_arquivotxt(caminho):
+    print(f"Carregando {caminho}...")
     try:
-        with open(dir_txt + arquivo_txt, "r") as arquivo:
+        with open(caminho, "r") as arquivo:
             texto_extraido = arquivo.read()
             textos = texto_extraido.split("Item do edital")
             retorno = []
@@ -71,23 +71,46 @@ def get_resume(text, *kwargs):
     )
     return completion.choices[0].message['content']
 
-def salva_arquivo_txt(r):
+def salva_arquivo_txt(texto_resumido_interno, arquivo_txt):
     print(f"Salvando {dir_txt_resumido}{arquivo_txt}...")
     with open(dir_txt_resumido + "resumido_" + arquivo_txt, 'w', encoding='utf-8') as arquivo_respostas:
-        for linha in range(len(r)-1):
-            arquivo_respostas.write(r[linha])
+        bloco = 0
+        for texto in texto_resumido_interno:
+            #print(f"Sanvando bloco {bloco}: {texto[:20]}")
+            arquivo_respostas.write(f"Bloco{bloco}\n{texto}\n\n")
+            bloco+=1
 
 def resume_texto(texto):
     r = []
     pagina = 1
     for linha in texto:
-        resumo = get_resume(linha)        
+        #resumo = get_resume(linha)        
+        resumo = linha
         r.append(resumo)
         #r.append(linha)
         print(f"Resumindo página: {pagina}. Tamanho anterior: {conta_tokens(linha)}. Tamanho novo: {conta_tokens(resumo)}")
         pagina = pagina + 1
     return r
 
+def carrega_diretorio(diretorio):
+    arquivos = [arquivo for arquivo in os.listdir(diretorio) if arquivo.endswith('.txt')]
+    for nome_arquivo in arquivos:
+        caminho_completo = os.path.join(diretorio, nome_arquivo)
+
+        texto_extraido = carrega_arquivotxt(caminho_completo)
+        palavras_antes = 0
+        for texto in texto_extraido:
+            palavras_antes += conta_tokens(texto)
+
+        print (f"Texto extraído com {len(texto_extraido)} grandes tópicos.")
+
+        texto_resumido = resume_texto(texto_extraido)
+        palavras_depois = 0
+        for texto in texto_resumido:
+            palavras_depois += conta_tokens(texto)
+
+        print(f"O texto anterior possuía {palavras_antes} e agora possui {palavras_depois} em uma razão de {(palavras_depois/palavras_antes)*100}%")
+        salva_arquivo_txt(texto_resumido, nome_arquivo)
           
 nltk.download('stopwords', download_dir=r'dados\nltk_data')
 nltk.data.path.append(r".\dados\nltk_data")
@@ -97,30 +120,21 @@ dir_txt = "txts/"
 dir_txt_resumido = "resumidos/"
 arquivo_txt = "kanban.txt"
 
-prompt_text = """
-    Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
-    Remova todas as obviedades e todas repetições. Crie um texto conciso.
-    Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
+prompt_text = """    
+    Resuma o texto abaixo abordando todos os principais pontos: 
+    """
+    #Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
+    #Remova todas as obviedades e todas repetições. Crie um texto conciso.
+    #Resuminda para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
 
 max_gpt_tokens = 2100
-taxa_de_compressao = 4
-max_tokens_resumo = int(max_gpt_tokens / taxa_de_compressao)
+taxa_de_compressao_minima = 3
+max_tokens_resumo = int(max_gpt_tokens / taxa_de_compressao_minima)
 num_max_tokens= max_gpt_tokens - conta_tokens(prompt_text)
 
-print(f"Taxa de compressão: {taxa_de_compressao}")
+print(f"Taxa de compressão: {taxa_de_compressao_minima}")
 print(f"Máximo de texto por bloco: {max_tokens_resumo}")
 
-texto_extraido = carrega_arquivotxt()
-palavras_antes = 0
-for texto in texto_extraido:
-    palavras_antes += conta_tokens(texto)
+carrega_diretorio(dir_txt)
 
-print (f"Texto extraído com {len(texto_extraido)} grandes tópicos.")
 
-texto_resumido = resume_texto(texto_extraido)
-palavras_depois = 0
-for texto in texto_resumido:
-    palavras_depois += conta_tokens(texto)
-
-print(f"O texto anterior possuía {palavras_antes} e agora possui {palavras_depois} em uma razão de {palavras_depois/palavras_antes}")
-salva_arquivo_txt(texto_resumido)
