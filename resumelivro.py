@@ -38,9 +38,8 @@ def carrega_arquivotxt(num_max_tokens=1000):
         print(f"Erro no carregamento de arquivo: {e}")
 
 @retry(stop=stop_after_attempt(4))
-def get_resume(text, *kwargs):
-    print(f"resumindo... ")
-    prompt = f"Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento: \n{text}"
+def get_resume(text, *kwargs, p):
+    prompt = f"{p}\n{text}"
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     max_tokens=350,
@@ -52,8 +51,8 @@ def get_resume(text, *kwargs):
     return completion.choices[0].message['content']
 
 def salva_arquivo_txt(r):
-    print(f"Sanvando {dir_txt_resumido}{arquivo_txt}...")
-    with open(dir_txt_resumido + arquivo_txt, 'a', encoding='utf-8') as arquivo_respostas:
+    print(f"Salvando {dir_txt_resumido}{arquivo_txt}...")
+    with open(dir_txt_resumido + "resumido_" + arquivo_txt, 'a', encoding='utf-8') as arquivo_respostas:
         for linha in range(len(r)-1):
             arquivo_respostas.write(r[linha])
 
@@ -63,9 +62,12 @@ def resume_texto(texto):
     paginas = [minha_string_grande[i:i+tamanho_do_bloco] for i in range(0, len(minha_string_grande), tamanho_do_bloco)]
     print(f"resumindo {len(paginas)} páginas...")
     r = []
+    p = 1
     for linha in texto:
+        print('Resumindo página: ', p)
         r.append(get_resume(linha))
         #r.append(linha)
+        p = p + 1
     return r
 
           
@@ -78,6 +80,11 @@ dir_txt_resumido = "resumidos/"
 arquivo_txt = "kanban.txt"
 
 texto_extraido = carrega_arquivotxt()
+promtp = """
+    Resuma o texto abaixo de forma bem didática e apenas com os principais pontos para entendimento. 
+    Remova obviedades e quaisquer repetições.
+    Pense estar resumindo para alguém que já conhece o assunto e quer apenas guardar os pontos mais relevantes"""
+
 texto_resumido = resume_texto(texto_extraido)
 
 salva_arquivo_txt(texto_resumido)
